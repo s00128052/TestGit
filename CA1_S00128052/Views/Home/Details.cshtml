@@ -1,0 +1,43 @@
+﻿@model CA1_S00128052.Models.Camp
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container">
+    <div class="panel panel-info" style="margin-top:70px">
+        <div class="panel-heading">
+            <div class="panel-title">Camp: @Html.DisplayFor(model => model.CampTitle)</div>
+        </div>
+        @if(Model!=null)
+        {
+        if(Model.CampChildren.Count>0)
+        {
+        <table class="table table-condensed table-striped">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CampChildren[0].ChildName)</th>
+                <th>@Html.DisplayNameFor(model => model.CampChildren[0].ChildGender)</th>
+            </tr>
+
+            @foreach (var child in Model.CampChildren)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelitem => child.ChildName)</td>
+                    <td>@Html.DisplayFor(modelitem => child.ChildGender)</td>
+                </tr>
+            }
+        </table>
+        }
+        else
+        {
+            <div class="panel-body">
+                <h3>@string.Format("{0} has no children", @Html.DisplayFor(model => model.CampTitle))</h3>
+            </div>
+        }
+        }
+        <div class="panel-footer">
+            @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-info btn-sm" })
+        </div>
+    </div>
+</div>
+
+
